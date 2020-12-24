@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var serverback = express()
 
 
-
+var PORT = process.env.PORT || 3001
 serverback.use(bodyParser.json());
 serverback.use(bodyParser.urlencoded({ extended: true }));
 // Redistar account =========================================>
@@ -33,8 +33,7 @@ a={
         pswd:req.body.pswd,
     }
 
-
-// condition cheak ============================================>
+    // condition cheak ============================================>
 var flag = false; 
     for (let i = 0; i < arr.length; i++) {
     if (arr[i].email===a.email) {
@@ -43,14 +42,16 @@ var flag = false;
     }}
 // console.log("cofrom");
 if(flag===false){
-    console.log("user not found")   
+    console.log("do not match email")
+  
 }
 else if (arr[flag].pswd===a.pswd) {
     console.log("login susse full");
+  
 }else{
-    console.log("and");
+    console.log("do not match password");
 }})
 // server =====================================================>
- serverback.listen(3001,()=>{
+ serverback.listen(PORT,()=>{
     console.log("chal gaya hai");
 })
